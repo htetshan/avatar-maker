@@ -16,12 +16,12 @@ export default function MiniAvatarMaker() {
   const handleDownload = () => {
     const avatar = document.getElementById("avatar-preview");
     if (avatar) {
-      html2canvas(avatar).then((canvas) => {
-        const link = document.createElement("a");
-        link.download = "avatar.png";
-        link.href = canvas.toDataURL();
-        link.click();
-      });
+      const svgData = avatar.outerHTML;
+      const blob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "avatar.svg";
+      link.click();
     }
   };
 
@@ -32,19 +32,44 @@ export default function MiniAvatarMaker() {
       {/* Avatar Preview */}
       <svg
         id="avatar-preview"
+        xmlns="http://www.w3.org/2000/svg" // 👈 Required for valid standalone SVG
         width="160"
         height="160"
         viewBox="0 0 160 160"
         className="mb-6 rounded-full shadow-lg"
-        style={{ backgroundColor: color }}
       >
         {/* Face Shape */}
-        {face === "round" && <circle cx="80" cy="80" r="60" fill={color} />}
+        {face === "round" && (
+          <circle
+            cx="80"
+            cy="80"
+            r="60"
+            fill={color}
+            stroke="black"
+            strokeWidth="2"
+          />
+        )}
         {face === "square" && (
-          <rect x="40" y="40" width="80" height="80" fill={color} />
+          <rect
+            x="40"
+            y="40"
+            width="80"
+            height="80"
+            fill={color}
+            stroke="black"
+            strokeWidth="2"
+          />
         )}
         {face === "oval" && (
-          <ellipse cx="80" cy="80" rx="60" ry="70" fill={color} />
+          <ellipse
+            cx="80"
+            cy="80"
+            rx="60"
+            ry="70"
+            fill={color}
+            stroke="black"
+            strokeWidth="2"
+          />
         )}
 
         {/* Eyes */}
@@ -125,7 +150,9 @@ export default function MiniAvatarMaker() {
             className="border p-2 rounded w-full"
           >
             {faceShapes.map((f) => (
-              <option key={f}>{f}</option>
+              <option key={f} value={f}>
+                {f}
+              </option>
             ))}
           </select>
         </div>
