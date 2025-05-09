@@ -1,7 +1,7 @@
 import React from "react";
 
 export const EyeRoll = () => (
-  <g transform="scale(0.8) translate(46,40)">
+  <g transform="scale(0.69) translate(65,60)">
     {/* White part of eyes */}
     <circle fill="#FEFEFE" cx="60" cy="70" r="17" />
     <circle fill="#FEFEFE" cx="100" cy="70" r="17" />
@@ -59,7 +59,7 @@ export const EyeHappy = () => (
 );
 
 export const EyeLove = () => (
-  <g transform="scale(0.8) translate(46,40)">
+  <g transform="scale(0.69) translate(65,60)">
     {/* Left Eye */}
     <path d="M55 70 Q60 65 65 70" stroke="black" strokeWidth="2" fill="none" />
     <path

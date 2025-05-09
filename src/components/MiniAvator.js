@@ -1,32 +1,31 @@
 // components/MiniAvatarMaker.js
 import React, { useState } from "react";
 // html2canvas is not directly used for SVG download, but keeping it if you plan other download options
-import html2canvas from "html2canvas";
-import { MouthNeutral, MouthOpen, MouthSmile } from "./Mouths";
+import {
+  MouthEating,
+  MouthNeutral,
+  MouthOpen,
+  MouthSmile,
+  MouthTongue,
+} from "./Mouths";
 import { EyeCircle, EyeHappy, EyeLove, EyeRoll } from "./Eyes";
 import { HairLong, HairShort } from "./Hair";
+import { ClothesBlazer, ClothesHoodie, ClothesSweater } from "./Clothes";
 
-const faceShapes = ["oval"];
 const eyeStyles = ["eyeroll", "circle", "happy", "love"];
-const mouthStyles = ["smile", "open", "neutral"];
+const mouthStyles = ["smile", "open", "neutral", "eating", "tongue"];
 const hairStyles = ["long", "short"];
+const clotheStyles = ["blazer", "hoodie", "sweater"];
 
 // Added more skin tone options
-const colors = [
-  "#FFDAB9",
-  "#F5CBA7",
-  "#FADBD8",
-  "#D2B4DE",
-  "#C39C7E",
-  "#A0785A",
-];
+const colors = ["#FFDAB9", "#F5CBA7", "#C39C7E", "#A0785A"];
 
 export default function MiniAvatarMaker() {
-  const [face, setFace] = useState("oval");
-  const [eyes, setEyes] = useState("eyeroll");
+  const [eyes, setEyes] = useState("circle");
   const [mouth, setMouth] = useState("smile");
   const [color, setColor] = useState("#FFDAB9");
-  const [hair, setHair] = useState("long");
+  const [hair, setHair] = useState("short");
+  const [clothe, setClothe] = useState("blazer");
 
   const handleDownload = () => {
     const avatar = document.getElementById("avatar-preview");
@@ -64,12 +63,13 @@ export default function MiniAvatarMaker() {
         }}
       >
         <svg
+          id="avatar-preview"
           width="360"
-          height="450"
+          height="400"
           viewBox="0 0 180 200" // You can keep this if the coordinate system remains the same
           xmlns="http://www.w3.org/2000/svg"
         >
-          <rect width="200" height="300" fill="white" />
+          <rect width="200" height="300" fill="rgb(166, 158, 158)" />
           <path d="M50 180 Q100 130 150 180 V250 H50 Z" fill={color} />
           <path d="M85 170 H115 A15 10 0 0 1 85 170" fill={color} />
           <rect x="85" y="150" width="30" height="20" fill={color} />
@@ -95,6 +95,13 @@ export default function MiniAvatarMaker() {
           {mouth === "smile" && <MouthSmile />}
           {mouth === "open" && <MouthOpen />}
           {mouth === "neutral" && <MouthNeutral />}
+          {mouth === "eating" && <MouthEating />}
+          {mouth === "tongue" && <MouthTongue />}
+
+          {/* Clothes auto align */}
+          {clothe === "blazer" && <ClothesBlazer />}
+          {clothe === "hoodie" && <ClothesHoodie />}
+          {clothe === "sweater" && <ClothesSweater />}
         </svg>
       </div>
 
@@ -134,6 +141,18 @@ export default function MiniAvatarMaker() {
             className="border p-2 rounded w-full"
           >
             {mouthStyles.map((m) => (
+              <option key={m}>{m}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="block mb-1">Clothes:</label>
+          <select
+            value={clothe}
+            onChange={(e) => setClothe(e.target.value)}
+            className="border p-2 rounded w-full"
+          >
+            {clotheStyles.map((m) => (
               <option key={m}>{m}</option>
             ))}
           </select>
