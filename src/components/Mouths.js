@@ -10,6 +10,7 @@ export const MouthSmile = () => (
     />
   </g>
 );
+//helet
 
 export const MouthOpen = () => (
   <g transform="scale(0.9) translate(30,30)">
