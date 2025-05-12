@@ -16,7 +16,7 @@ export const MouthOpen = () => (
     <ellipse cx="80" cy="105" rx="15" ry="10" fill="black" />
   </g>
 );
-
+//hefe
 export const MouthNeutral = () => (
   <g transform="scale(0.9) translate(51,50)">
     <path
