@@ -10,18 +10,21 @@ h2,
 h3 {
   text-align: center;
 }
-
+#avatar-preview {
+  display: block;
+  margin: 0 auto;
+}
 button {
   margin: 5px;
   padding: 10px;
   border: none;
-  background-color: #0070f3;
+  background-color: #b4e2de;
   color: rgb(67, 47, 47);
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #005bb5;
+  background-color: #8fa8cc;
 }
 
 .h_long {
