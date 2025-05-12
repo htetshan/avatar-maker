@@ -16,7 +16,7 @@ export const MouthOpen = () => (
     <ellipse cx="80" cy="105" rx="15" ry="10" fill="black" />
   </g>
 );
-export const MouthEating = () => (
+export const MouthCuting = () => (
   <g transform="scale(0.55) translate(2,20)">
     <circle fill="#E08C65" fill-opacity="0.6" cx="134" cy="199" r="11" />
     <circle fill="#E08C65" fill-opacity="0.6" cx="226" cy="199" r="11" />
